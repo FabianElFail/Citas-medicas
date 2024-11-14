@@ -14,30 +14,42 @@ namespace Citas_médicas
 
 		public static void Crear(Cita[] citas)
 		{
-			// Verificar espacio disponible
+			
 			if (indice >= citas.Length)
 			{
-				Console.WriteLine("No se pueden agregar más citas. Espacio lleno.");
+				Console.WriteLine("No se pueden agregar más citas. Espacio lleno (Máximo 100).");
 				return;
 			}
 
-			// Solicitar datos del estudiante
-			Console.Write("Ingrese el código del estudiante: ");
-			int codigo = int.Parse(Console.ReadLine());
+
+			int codigo;
+			do
+			{
+				Console.Write("Ingrese el código del estudiante (número entero): ");
+			} while (!int.TryParse(Console.ReadLine(), out codigo));
+
 			Console.Write("Ingrese el nombre del estudiante: ");
 			string nomb = Console.ReadLine();
+
+			
 			Console.Write("Ingrese la universidad del estudiante: ");
 			string uni = Console.ReadLine();
 			Estudiante est = new Estudiante(codigo, nomb, uni);
 
-			// Generar automáticamente el número de cita
 			int num = contadorCitas;
+			
 			Console.Write("Ingrese la enfermedad del estudiante: ");
 			string enfermedad = Console.ReadLine();
-			Console.Write("Ingrese el precio de la consulta: ");
-			double precio = double.Parse(Console.ReadLine());
 
-			// Crear la cita directamente en el arreglo
+			double precio;
+			do
+			{
+				Console.Write("Ingrese el precio de la consulta: ");
+			} while (!double.TryParse(Console.ReadLine(), out precio));
+
+
+
+
 			citas[indice] = new Cita 
 			{
 				Num = num,
@@ -49,7 +61,7 @@ namespace Citas_médicas
 			contadorCitas++;
 			indice++;
 
-			Console.WriteLine("Cita agregada exitosamente.");
+			Console.WriteLine("Cita registrada.");
 		}
 
 		public static void Listar(Cita[] citas)
@@ -60,15 +72,15 @@ namespace Citas_médicas
 				return;
 			}
 
-			double sumaPrecios = 0;
-			Console.WriteLine("\n=== Lista de Citas ===");
+			double sPrecios = 0;
+			Console.WriteLine("\n*** Lista de Citas ***");
 			for (int i = 0; i < indice; i++)
 			{
 				Console.WriteLine(citas[i].ToString());
-				sumaPrecios += citas[i].Precio;
+				sPrecios += citas[i].Precio;
 			}
 
-			Console.WriteLine($"\nSuma total de los precios: {sumaPrecios:C}");
+			Console.WriteLine($"\nSuma total de los precios: {sPrecios:C}");
 		}
 
 		public static void ModificarMasivo(Cita[] citas)
@@ -81,7 +93,7 @@ namespace Citas_médicas
 
 			Console.Write("Ingrese el texto a buscar en las universidades: ");
 			string textoBuscar = Console.ReadLine();
-			Console.Write("Ingrese el texto de reemplazo: ");
+			Console.Write("Ingrese el texto a reemplazar: ");
 			string textoReemplazo = Console.ReadLine();
 
 			int cambiosRealizados = 0;

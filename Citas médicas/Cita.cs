@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Citas_médicas
 {
-	internal class Cita
+	public class Cita
 	{
 		public int Num { get; set; }
 		public Estudiante Est { get; set; }
@@ -15,7 +15,7 @@ namespace Citas_médicas
 
 		public override string ToString()
 		{
-			return $"Número de Cita: {Num}, Enfermedad: {Enfermedad}, Estudiante: {Est.Nombre}, Universidad: {Estudiante.Universidad}, Precio: {Precio:C}";
+			return $"Número de Cita: {Num}, Enfermedad: {Enfermedad}, Estudiante: {Est.Nombre}, Universidad: {Est.Universidad}, Precio: {Precio:C}";
 		}
 	}
 
