@@ -13,20 +13,10 @@ namespace Citas_médicas
 		public string Enfermedad { get; set; }
 		public double Precio { get; set; }
 
-		public Cita(int num, Estudiante est, string enfermedad, double precio)
-		{
-			Num = num;
-			Est = est;
-			Enfermedad = enfermedad;
-			Precio = precio;
-		}
-
 		public override string ToString()
 		{
-			return $"Número de Cita: {Num}, {Est}, Enfermedad: {Enfermedad}, Precio: {Precio:C}";
+			return $"Número de Cita: {Num}, Enfermedad: {Enfermedad}, Estudiante: {Est.Nombre}, Universidad: {Estudiante.Universidad}, Precio: {Precio:C}";
 		}
-	
-
-}
+	}
 
 }
